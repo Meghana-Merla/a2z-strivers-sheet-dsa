@@ -1,0 +1,44 @@
+#include<iostream>
+#include<vector>
+#include<tuple>
+using namespace std;
+
+class Solution {
+public:
+    tuple<int, int, int> maxSubArray(vector<int>& nums) {
+        int sum=0;
+        int mx=nums[0];
+        int st=0, end=0;
+
+        for(int i=0;i<nums.size();i++){
+            sum+=nums[i];
+            if(mx<sum){
+                mx=sum;
+                end=i;
+            }
+            if(sum<0){
+                sum=0;
+                st=i+1;
+            }
+        }return {st,end,mx};
+    }
+};
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> nums(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> nums[i];
+    }
+
+    Solution solution;
+    auto [start, end, maxSum] = solution.maxSubArray(nums);
+
+    cout << "The maximum subarray sum is: " << maxSum << endl;
+    cout << "The indices of the maximum subarray are: " << start << " to " << end << endl;
+
+    return 0;
+}
