@@ -1,0 +1,43 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> leaders(vector<int>&nums){
+        int n=nums.size();
+        vector<int>ans;
+        int mx=nums[n-1];
+        for (int i=n-1;i>=0;i--){
+            if(nums[i]>=mx){
+                ans.push_back(nums[i]);
+                mx=nums[i];
+            }
+        }
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+};
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> nums(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> nums[i];
+    }
+
+    Solution solution;
+    vector<int> leaders = solution.leaders(nums);
+
+    cout << "The leaders in the array are: ";
+    for (int leader : leaders) {
+        cout << leader << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
