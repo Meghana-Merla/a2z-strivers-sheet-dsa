@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        if(s.size()!=t.size()) return false;
+        vector<int>s1(256,0);
+        vector<int>s2(256,0);
+        for(int i=0;i<s.size();i++){
+            if(s1[s[i]]!=s2[t[i]]) return false;
+            s1[s[i]]=1+i;
+            s2[t[i]]=i+1;
+        }
+        return true;
+    }
+};
